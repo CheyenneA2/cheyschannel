@@ -1,0 +1,98 @@
+<!DOCTYPE html> <!-- Declares the document type as HTML5 -->
+<html lang="en"> <!-- Starts the HTML document and sets the language to English -->
+<head>
+<meta charset="UTF-8" /> <!-- Sets character encoding for proper text rendering -->
+<meta name="viewport" content="width=device-width, initial-scale=1.0" /> <!-- Ensures mobile
+responsiveness -->
+<!-- CheysChannel.com will be aa digital scrap book of pictures/videos taken during diff times of Cheyenne's
+    esp with the Digital camera. Goal is a very functional website for both user and owner
+    * easy upload of files/pics/videos
+    * seamless selections of options 
+    * black/grey/gold/white/red
+    * news papery/bloggy 
+    * password access + password entry for crtain eps  -->
+
+<meta name="description" content="CheysChannel - Your go-to place for all things Chey!"/> <!-- Description for search engines -->
+<meta name="keywords" content="CheysChannel, episodes, guide, contact, IG"/>
+<meta name="author" content="CASME"/> <!-- Author of the page -->
+<link rel="icon" href="favicon.ico" /> <!-- Links a favicon for the site -->
+  
+  <title>Welcome</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      background-color: #f4f4f4;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      height: 100vh;
+      margin: 0;
+    }
+
+    h1 {
+      color: #333;
+    }
+
+    .container {
+      background: white;
+      padding: 40px;
+      border-radius: 12px;
+      box-shadow: 0 0 10px rgba(0,0,0,0.1);
+      text-align: center;
+    }
+
+    input[type="password"] {
+      padding: 10px;
+      width: 200px;
+      margin: 10px 0;
+      border: 1px solid #ccc;
+      border-radius: 6px;
+    }
+
+    button {
+      padding: 10px 20px;
+      background-color: #007bff;
+      border: none;
+      color: white;
+      border-radius: 6px;
+      cursor: pointer;
+    }
+
+    .error {
+      color: red;
+      margin-top: 10px;
+    }
+  </style>
+</head>
+<body>
+  <div class="container">
+  <!-- <h1>Welcome to My Website</h1> -->
+    <p>Please enter the password to continue:</p>
+    <input type="password" id="password" placeholder="Enter password">
+    <br>
+    <button onclick="checkPassword()">Enter</button>
+    <p class="error" id="errorMsg"></p>
+  </div>
+
+  <script>
+    function checkPassword() {
+      const password = document.getElementById('password').value;
+      const errorMsg = document.getElementById('errorMsg');
+      
+      // Replace this with your chosen password
+      const correctPassword = "0000";
+
+      if (password === correctPassword) {
+        window.location.href = "Channel 0.html";
+      } else {
+        errorMsg.textContent = "Incorrect password. Try again.";
+      }
+    }
+  </script>
+</body>
+</html>
+<!-- End of ENTER.html -->
+
+
+<!-- ENTER.html, script.js, style.cs are the basic foundation of the website-->
