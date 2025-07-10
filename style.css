@@ -42,7 +42,10 @@ header {
   z-index: 1; /* Ensures the image is below the NAME image */
 }
 header h1 {
-  position: absolute; /* Positions the heading over the header image */
+  position: flex; /* Allows flexible positioning of the heading */
+  width: 100%; /* Makes the heading stretch across the page */
+  height: 100px; /* Sets a fixed height for the heading */
+  text-align: center; /* Centers the heading text */
   top: 35%; /* Centers the heading vertically */
   left: 50%; /* Centers the heading horizontally */
   transform: translate(-50%, -50%); /* Adjusts position to truly center the heading */
