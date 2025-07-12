@@ -13,7 +13,7 @@ collections:
     files:
       - label: "Homepage"
         name: "homepage"
-        file: "index.html"
+        file: "admin/index.html"
         fields:
           - { label: "Page Title", name: "title", widget: "string" }
           - { label: "Welcome Text", name: "welcome", widget: "string" }
