@@ -1,5 +1,4 @@
 backend:
-  local_backend: true
   name: git-gateway
   branch: main
 

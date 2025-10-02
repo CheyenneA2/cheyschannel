@@ -7,8 +7,29 @@
   <meta charset="UTF-8" /> <!-- Sets character encoding for proper text rendering -->
   <title>Channel 0</title>
   <link rel =" stylesheet" href="styles.css">
+  <style>
+   .admin-btn {
+      position: fixed;
+      bottom: 14px;
+      left: 14px;
+      z-index: 99;
+      padding: 6px 10px;
+      font-size: 0.8rem; 
+      border-radius: 8px;
+      border: 1px solid #2b2b2b;
+      background: #606162;
+      color: #fff;
+      text-decoration: none;
+      display: inline-block;
+    }
+    .admin-btn:hover {
+      background: #4a4b4c;
+    } 
+  </style>
   </head>
   </body>
+  <a class="admin-btn" href="/admin">4chey</a>
+
   
   <!---->  <nav> <!-- Navigation bar for the website 
   <ul>
@@ -45,6 +66,11 @@
   <footer> <!-- Bottom section of the page, usually copyright and links -->
     <p>&copy; 2025 CheysChannel. All rights reserved to do wtf i want! MUAH.</p> <!-- Copyright notice -->
   </footer>
-  <script src="script.js"></script> <!-- Links an external JavaScript file -->
+  <script src="script.js">
+    const ACCESS_KEY = "cc_access_ok";
+  if (localStorage.getItem(ACCESS_KEY) !== "1") {
+    location.replace("/"); // send back to Enter page
+  }
+  </script> <!-- Links an external JavaScript file -->
 </body>
 </html>

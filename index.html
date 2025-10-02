@@ -16,6 +16,7 @@
         background: #333;
         color: white;
         padding: 1rem;
+
       }
       main {
         padding: 2rem;
@@ -27,18 +28,6 @@
         position: fixed;
         bottom: 0;
         width: 100%;
-      }
-      a.button {
-        display: inline-block;
-        margin-top: 1rem;
-        padding: 0.5rem 1rem;
-        background: #007bff;
-        color: white;
-        text-decoration: none;
-        border-radius: 4px;
-      }
-      a.button:hover {
-        background: #0056b3;
       }
       :root { --bg:#111; --card:#1b1b1b; --text:#eee; --muted:#aaa; }
       * { box-sizing: border-box; }
@@ -65,9 +54,9 @@
       .err { margin-top:10px; color:#ff7676; min-height:1.2em; }
       /* Floating Admin button (hidden by default; shows when Identity user is logged in) */
       .admin-btn {
-        position: fixed; top: 14px; right: 14px; z-index: 99;
-        padding: 10px 14px; border-radius: 12px; border:1px solid #2b2b2b;
-        background:#2b66f6; color:#fff; text-decoration:none; display:none;
+        position: fixed; bottom: 14px; left: 14px; z-index: 99;
+        padding: 6px 10px; font-size: 0.8rem; border-radius: 8px; border:1px solid #2b2b2b;
+        background:#606162; color:#fff; text-decoration: none; display: inline-block;
       }
       body { margin:0; font-family: system-ui, -apple-system, Arial, sans-serif; background:#f6f6f6; color:#111; }
       header { background:#333; color:#fff; padding:16px 20px; }
@@ -80,7 +69,7 @@
       <h1>Welcome to Chey’s Channel</h1>
     </header>
 
-    <a class="admin-btn" href="/admin">Admin</a>
+    <a class="admin-btn" href="/admin">4chey</a>
 
     <div class="card">
       <h1>Enter</h1>
@@ -117,17 +106,8 @@
       }
       go.addEventListener("click", tryEnter);
       pw.addEventListener("keydown", e => { if (e.key === "Enter") tryEnter(); });
-
-      // Show Admin button only if logged into Netlify Identity
-      const adminBtn = document.querySelector(".admin-btn");
-      function updateAdminVisibility(user) {
-       adminBtn.style.display = user ? "inline-block" : "none";
-      }
-      netlifyIdentity.on("init", user => updateAdminVisibility(user));
-      netlifyIdentity.on("login", user => updateAdminVisibility(user));
-      netlifyIdentity.on("logout", () => updateAdminVisibility(null));
-      netlifyIdentity.init();
     </script>
+
     <footer>
       <p>&copy; 2025 Chey’s Channel</p>
     </footer>
