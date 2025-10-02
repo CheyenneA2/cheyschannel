@@ -40,6 +40,35 @@
       a.button:hover {
         background: #0056b3;
       }
+      :root { --bg:#111; --card:#1b1b1b; --text:#eee; --muted:#aaa; }
+    * { box-sizing: border-box; }
+    body {
+      margin:0; min-height:100dvh; display:grid; place-items:center;
+      background: radial-gradient(1200px 600px at 70% -20%, #222 0%, #111 55%, #0c0c0c 100%);
+      font-family: system-ui, -apple-system, Arial, sans-serif; color: var(--text);
+    }
+    .card {
+      width:min(92vw, 420px);
+      background:var(--card); border:1px solid #2a2a2a; border-radius:16px;
+      padding:24px; box-shadow:0 10px 30px rgba(0,0,0,.35);
+    }
+    h1 { margin:0 0 10px; font-size:1.25rem; letter-spacing:.2px; }
+    p { margin:0 0 18px; color:var(--muted); font-size:.95rem; }
+    .row { display:flex; gap:10px; }
+    input[type="password"] {
+      flex:1; padding:12px 14px; border-radius:12px; border:1px solid #2b2b2b; background:#121212; color:var(--text);
+    }
+    button {
+      padding:12px 16px; border-radius:12px; border:1px solid #2b2b2b; background:#2b66f6; color:white; cursor:pointer;
+    }
+    button:hover { filter:brightness(1.05); }
+    .err { margin-top:10px; color:#ff7676; min-height:1.2em; }
+    /* Floating Admin button (hidden by default; shows when Identity user is logged in) */
+    .admin-btn {
+      position: fixed; top: 14px; right: 14px; z-index: 99;
+      padding: 10px 14px; border-radius: 12px; border:1px solid #2b2b2b;
+      background:#2b66f6; color:#fff; text-decoration:none; display:none;
+    }
     </style>
   </head>
   <body>
@@ -47,12 +76,54 @@
       <h1>Welcome to Chey’s Channel</h1>
     </header>
 
-    <main>
-      <p>This is the homepage of your site 🎉</p>
-      <p>Use the button below to manage your content:</p>
-      <a class="button" href="/admin">Go to Admin</a>
-    </main>
+    <a class="admin-btn" href="/admin">Admin</a>
 
+    <div class="card">
+      <h1>Enter</h1>
+      <p>Please enter the passcode to view the site.</p>
+      <div class="row">
+        <input id="pw" type="password" placeholder="Passcode" autocomplete="current-password" />
+        <button id="go">Enter</button>
+      </div>
+      <div id="err" class="err"></div>
+    </div>
+
+    <script src="https://identity.netlify.com/v1/netlify-identity-widget.js"></script>
+    <script>
+    // ⚠️ Simple client-side "gate" (avoid for sensitive content). For casual gating only.
+      const PASSCODE = "0000"; // <-- change this
+      const ACCESS_KEY = "cc_access_ok";
+
+      const pw = document.getElementById("pw");
+      const go = document.getElementById("go");
+      const err = document.getElementById("err");
+
+      // If already unlocked, skip to home
+      if (localStorage.getItem(ACCESS_KEY) === "1") {
+        location.replace("/Channel0.html");
+      }
+
+      function tryEnter() {
+        if ((pw.value || "").trim() === PASSCODE) {
+          localStorage.setItem(ACCESS_KEY, "1");
+          location.href = "/Channel0.html";
+        } else {
+          err.textContent = "Incorrect passcode.";
+        }
+      }
+      go.addEventListener("click", tryEnter);
+      pw.addEventListener("keydown", e => { if (e.key === "Enter") tryEnter(); });
+
+      // Show Admin button only if logged into Netlify Identity
+      const adminBtn = document.querySelector(".admin-btn");
+      function updateAdminVisibility(user) {
+       adminBtn.style.display = user ? "inline-block" : "none";
+      }
+      netlifyIdentity.on("init", user => updateAdminVisibility(user));
+    netlifyIdentity.on("login", user => updateAdminVisibility(user));
+    netlifyIdentity.on("logout", () => updateAdminVisibility(null));
+    netlifyIdentity.init();
+  </script>
     <footer>
       <p>&copy; 2025 Chey’s Channel</p>
     </footer>
