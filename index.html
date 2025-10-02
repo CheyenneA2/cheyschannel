@@ -103,9 +103,9 @@
       const err = document.getElementById("err");
 
       // If already unlocked, skip to home
-      if (localStorage.getItem(ACCESS_KEY) === "1") {
-        location.replace("/Channel 0.html");
-      }
+      //if (localStorage.getItem(ACCESS_KEY) === "1") {
+      //  location.replace("/Channel 0.html");
+      //}
 
       function tryEnter() {
         if ((pw.value || "").trim() === PASSCODE) {
