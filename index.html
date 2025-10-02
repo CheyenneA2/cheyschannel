@@ -41,34 +41,38 @@
         background: #0056b3;
       }
       :root { --bg:#111; --card:#1b1b1b; --text:#eee; --muted:#aaa; }
-    * { box-sizing: border-box; }
-    body {
-      margin:0; min-height:100dvh; display:grid; place-items:center;
-      background: radial-gradient(1200px 600px at 70% -20%, #222 0%, #111 55%, #0c0c0c 100%);
-      font-family: system-ui, -apple-system, Arial, sans-serif; color: var(--text);
-    }
-    .card {
-      width:min(92vw, 420px);
-      background:var(--card); border:1px solid #2a2a2a; border-radius:16px;
-      padding:24px; box-shadow:0 10px 30px rgba(0,0,0,.35);
-    }
-    h1 { margin:0 0 10px; font-size:1.25rem; letter-spacing:.2px; }
-    p { margin:0 0 18px; color:var(--muted); font-size:.95rem; }
-    .row { display:flex; gap:10px; }
-    input[type="password"] {
-      flex:1; padding:12px 14px; border-radius:12px; border:1px solid #2b2b2b; background:#121212; color:var(--text);
-    }
-    button {
-      padding:12px 16px; border-radius:12px; border:1px solid #2b2b2b; background:#2b66f6; color:white; cursor:pointer;
-    }
-    button:hover { filter:brightness(1.05); }
-    .err { margin-top:10px; color:#ff7676; min-height:1.2em; }
-    /* Floating Admin button (hidden by default; shows when Identity user is logged in) */
-    .admin-btn {
-      position: fixed; top: 14px; right: 14px; z-index: 99;
-      padding: 10px 14px; border-radius: 12px; border:1px solid #2b2b2b;
-      background:#2b66f6; color:#fff; text-decoration:none; display:none;
-    }
+      * { box-sizing: border-box; }
+      body {
+        margin:0; min-height:100dvh; display:grid; place-items:center;
+        background: radial-gradient(1200px 600px at 70% -20%, #222 0%, #111 55%, #0c0c0c 100%);
+        font-family: system-ui, -apple-system, Arial, sans-serif; color: var(--text);
+      }
+      .card {
+        width:min(92vw, 420px);
+        background:var(--card); border:1px solid #2a2a2a; border-radius:16px;
+        padding:24px; box-shadow:0 10px 30px rgba(0,0,0,.35);
+      }
+      h1 { margin:0 0 10px; font-size:1.25rem; letter-spacing:.2px; }
+      p { margin:0 0 18px; color:var(--muted); font-size:.95rem; }
+      .row { display:flex; gap:10px; }
+      input[type="password"] {
+        flex:1; padding:12px 14px; border-radius:12px; border:1px solid #2b2b2b; background:#121212; color:var(--text);
+      }
+      button {
+        padding:12px 16px; border-radius:12px; border:1px solid #2b2b2b; background:#2b66f6; color:white; cursor:pointer;
+      }
+      button:hover { filter:brightness(1.05); }
+      .err { margin-top:10px; color:#ff7676; min-height:1.2em; }
+      /* Floating Admin button (hidden by default; shows when Identity user is logged in) */
+      .admin-btn {
+        position: fixed; top: 14px; right: 14px; z-index: 99;
+        padding: 10px 14px; border-radius: 12px; border:1px solid #2b2b2b;
+        background:#2b66f6; color:#fff; text-decoration:none; display:none;
+      }
+      body { margin:0; font-family: system-ui, -apple-system, Arial, sans-serif; background:#f6f6f6; color:#111; }
+      header { background:#333; color:#fff; padding:16px 20px; }
+      main { padding:24px; max-width:1000px; margin:0 auto; }
+      footer { background:#333; color:#fff; padding:16px 20px; margin-top:60px; }
     </style>
   </head>
   <body>
@@ -100,13 +104,13 @@
 
       // If already unlocked, skip to home
       if (localStorage.getItem(ACCESS_KEY) === "1") {
-        location.replace("/Channel0.html");
+        location.replace("/Channel 0.html");
       }
 
       function tryEnter() {
         if ((pw.value || "").trim() === PASSCODE) {
           localStorage.setItem(ACCESS_KEY, "1");
-          location.href = "/Channel0.html";
+          location.href = "/Channel 0.html";
         } else {
           err.textContent = "Incorrect passcode.";
         }
@@ -120,10 +124,10 @@
        adminBtn.style.display = user ? "inline-block" : "none";
       }
       netlifyIdentity.on("init", user => updateAdminVisibility(user));
-    netlifyIdentity.on("login", user => updateAdminVisibility(user));
-    netlifyIdentity.on("logout", () => updateAdminVisibility(null));
-    netlifyIdentity.init();
-  </script>
+      netlifyIdentity.on("login", user => updateAdminVisibility(user));
+      netlifyIdentity.on("logout", () => updateAdminVisibility(null));
+      netlifyIdentity.init();
+    </script>
     <footer>
       <p>&copy; 2025 Chey’s Channel</p>
     </footer>
