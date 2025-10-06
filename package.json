@@ -21,6 +21,7 @@
     "@stackbit/cms-git": "^1.0.35",
     "@stackbit/types": "^2.1.14",
     "@types/node": "^24.7.0",
+    "netlify-cli": "^23.9.1",
     "typescipt": "^1.0.0",
     "typescript": "^5.9.3"
   },
