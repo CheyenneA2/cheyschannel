@@ -1,158 +1,132 @@
 <!DOCTYPE html>
 <html lang="en">
-  <head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Chey’s Channel</title>
-    <style>
-      :root { 
-        --bg: #111;
-        --card: #1b1b1b;
-        --text: #eee;
-        --muted: #aaa;
-      }
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Chey’s Channel</title>
 
-      * {
-        box-sizing: border-box;
-        margin: 0;
-        padding: 0;
-      }
+  <style>
+    :root { --bg:#111; --card:#1b1b1b; --text:#eee; --muted:#aaa; }
 
-      body {
-        min-height: 100vh;
-        display: grid;
-        place-items: center;
-        font-family: system-ui, -apple-system, Arial, sans-serif;
-        color: var(--text);
+    * { box-sizing: border-box; margin: 0; padding: 0; }
 
-        background-image: url('images/ENTER.png'); 
-        background-size: cover;
+    body {
+      min-height: 100vh;
+      font-family: system-ui, -apple-system, Arial, sans-serif;
+      color: var(--text);
 
-        background-color: #111;
-        
-      }
+      /* Fallback background; will be replaced by JSON if provided */
+      background-image: url('images/ENTER.png');
+      background-size: cover;
+      background-position: center;
+      background-repeat: no-repeat;
+      background-attachment: fixed;
+      background-color: var(--bg);
+    }
 
-      .card {
-        width: min(92vw, 420px);
-        background: var(--card);
-        border: 1px solid #2a2a2a;
-        border-radius: 16px;
-        padding: 24px;
-        box-shadow: 0 10px 30px rgba(0,0,0,0,35);
-        text-align: center;
-      }
+    /* Fixed Admin button (bottom-left) */
+    .admin-btn {
+      position: fixed; bottom: 14px; left: 14px; z-index: 200;
+      padding: 6px 10px; font-size: 0.8rem; border-radius: 8px;
+      border: 1px solid #2b2b2b; background:#606162; color:#fff;
+      text-decoration: none;
+    }
 
-      h1 {
-        margin-bottom: 10px;
-        font-size: 1.5rem;
-      }
+    /* Password card: fixed bottom-center above footer */
+    .card {
+      position: fixed; left: 50%; transform: translateX(-50%);
+      bottom: 60px; /* clears the fixed footer */
+      z-index: 150;
 
-      p {
-        margin-bottom: 18px;
-        color: var(--muted);
-        font-size: 1rem;
-      }
+      width: min(92vw, 420px);
+      background: var(--card);
+      border: 1px solid #2a2a2a;
+      border-radius: 16px;
+      padding: 24px;
+      box-shadow: 0 10px 30px rgba(0,0,0,.35);
+      text-align: center;
+    }
 
-      .row {
-        display: flex;
-        gap: 10px;
-      }
+    h1 { margin-bottom: 10px; font-size: 1.5rem; }
+    p { margin-bottom: 18px; color: var(--muted); font-size: 1rem; }
 
-      input[type="password"] {
-        flex: 1;
-        padding: 12px 14px;
-        border-radius: 12px;
-        border: 1px solid #2b2b2b;
-        background: #121212;
-        color: var(--text);
-      }
+    .row { display: flex; gap: 10px; }
 
-      button {
-        padding: 12px 16px;
-        border-radius: 12px;
-        border: none;
-        background: #d1d4da;
-        color: white;
-        cursor: pointer;
-      }
+    input[type="password"] {
+      flex: 1; padding: 12px 14px; border-radius: 12px;
+      border: 1px solid #2b2b2b; background:#121212; color: var(--text);
+    }
 
-      button:hover {
-        filter: bightness(1.05);
-      }
+    button {
+      padding: 12px 16px; border-radius: 12px; border: none;
+      background: #d1d4da; color: #111; cursor: pointer;
+    }
+    button:hover { filter: brightness(1.05); }
 
-      footer {
-        position: fixed;
-        bottom: 10px;
-        width: 100%;
-        text-align: center;
-        color : var(--muted);
-        font-size: 0.8rem;
-      }
+    .err { margin-top: 10px; color: #ff7676; min-height: 1.2em; }
 
-      .admin-btn {
-        position: fixed;
-        bottom: 14px;
-        left: 14px;
-        z-index: 99;
-        padding: 6px 10px;
-        font-size: 0.8rem; 
-        border-radius: 8px;
-        border: 1px solid #2b2b2b;
-        background: #606162;
-        color: #fff;
-        text-decoration: none;
-        display: inline-block;
-      }
+    /* Fixed footer; card sits just above it */
+    footer {
+      position: fixed; bottom: 10px; left: 0; right: 0; z-index: 100;
+      text-align: center; color: var(--muted); font-size: 0.8rem;
+      padding: 0 12px;
+    }
+  </style>
+</head>
+<body>
 
-    </style>
-  </head>
-  <body>
-    <header>
-    </header>
-    <a class="admin-btn" href="/admin">4chey</a>
+  <a class="admin-btn" href="/admin">4chey</a>
 
-    <div class="card">
-      <h1>Enter</h1>
-      <p>Please enter the passcode to view the site.</p>
-      <div class="row">
-        <input id="pw" type="password" placeholder="Passcode" autocomplete="current-password" />
-        <button id="go">Enter</button>
-      </div>
-      <div id="err" class="err"></div>
+  <div class="card">
+    <h1>Enter</h1>
+    <p>Please enter the passcode to view the site.</p>
+    <div class="row">
+      <input id="pw" type="password" placeholder="Passcode" autocomplete="current-password"/>
+      <button id="go">Enter</button>
     </div>
+    <div id="err" class="err"></div>
+  </div>
 
+  <footer>
+    <p>&copy; 2025 Chey’s Channel</p>
+  </footer>
 
-    <script src="https://identity.netlify.com/v1/netlify-identity-widget.js"></script>
-    <script>
-    // ⚠️ Simple client-side "gate" (avoid for sensitive content). For casual gating only.
-      const PASSCODE = "0000"; // <-- change this
-      const ACCESS_KEY = "cc_access_ok";
+  <!-- Netlify Identity for CMS login -->
+  <script src="https://identity.netlify.com/v1/netlify-identity-widget.js"></script>
 
-      const pw = document.getElementById("pw");
-      const go = document.getElementById("go");
-      const err = document.getElementById("err");
+  <script>
+    // Simple client-side gate (for casual use only)
+    const PASSCODE = "0000";            // <-- change this
+    const ACCESS_KEY = "cc_access_ok";  // localStorage flag
+    const pw = document.getElementById("pw");
+    const go = document.getElementById("go");
+    const err = document.getElementById("err");
 
-      //If already unlocked, skip to home
-    //  if (localStorage.getItem(ACCESS_KEY) === "1") {
-    //    location.replace("/Channel 0.html");
-    //  }
-
-      function tryEnter() {
-        if ((pw.value || "").trim() === PASSCODE) {
-          localStorage.setItem(ACCESS_KEY, "1");
-          location.href = "/Channel 0.html";
-        } else {
-          err.textContent = "Incorrect passcode.";
-        }
+    function tryEnter() {
+      if ((pw.value || "").trim() === PASSCODE) {
+        localStorage.setItem(ACCESS_KEY, "1");
+        location.href = "/Channel 0.html";
+      } else {
+        err.textContent = "Incorrect passcode.";
       }
-      go.addEventListener("click", tryEnter);
-      pw.addEventListener("keydown", e => { if (e.key === "Enter") tryEnter(); });
-    </script>
+    }
+    go.addEventListener("click", tryEnter);
+    pw.addEventListener("keydown", e => { if (e.key === "Enter") tryEnter(); });
 
-    <footer>
-      <p>&copy; 2025 Chey’s Channel</p>
-    </footer>
-  </body>
-</html>
-<!-- Redirects to the admin panel for content management -->
+    // Load background from content/home.json if available
+    (async () => {
+      try {
+        const res = await fetch('/content/home.json?v=' + Date.now());
+        if (!res.ok) return;
+        const data = await res.json();
+        if (data.bgImage) {
+          document.body.style.backgroundImage = `url('${data.bgImage}')`;
+        }
+      } catch (e) {
+        console.warn('CMS content load failed:', e);
+      }
+    })();
+  </script>
+</body>
+</html><!-- Redirects to the admin panel for content management -->
 <!-- End of index.html -->
