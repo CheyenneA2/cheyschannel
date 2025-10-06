@@ -17,4 +17,3 @@ collections:
       - { label: "Body", name: "body", widget: "markdown" }
       - { label: "Image", name: "image", widget: "image", required: false }
       - { label: "Description", name: "description", widget: "text", required: false }
-      
