@@ -17,3 +17,21 @@ collections:
       - { label: "Body", name: "body", widget: "markdown" }
       - { label: "Image", name: "image", widget: "image", required: false }
       - { label: "Description", name: "description", widget: "text", required: false }
+
+      publish_mode: editorial_workflow
+      media_folder: "images/uploads"
+      public_folder: "/images/uploads"
+
+      collections
+        - name: "site"
+          label: "Site Content"
+          files:
+            - label: "Homepage"
+              name: "homepage"
+              file: "index.html"
+              fields:
+                - { label: "Page Title", name: "title", widget: "string" }
+                - { label: "Welcome Text", name: "text", widget: "string" }
+
+      load_config_file: true
+      preview_path: "/"
