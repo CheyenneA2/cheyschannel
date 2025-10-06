@@ -1,9 +1,27 @@
-import { defineStackbitConfig } from '@stackbit/types';
+// stackbit.config.ts
+import type { StackbitConfig } from "@stackbit/types";
+import { GitContentSource } from "@stackbit/cms-git";
 
-export default defineStackbitConfig({
-    "stackbitVersion": "~0.6.0",
-    "nodeVersion": "18",
-    "ssgName": "custom",
-    "contentSources": [],
-    "postInstallCommand": "npm i --no-save @stackbit/types"
-})
+const config: StackbitConfig = {
+  contentSources: [
+    new GitContentSource({
+      rootPath: __dirname,
+      contentDirs: ["content"],
+      models: [
+        {
+          name: "home",
+          type: "page",
+          filePath: "content/home.json",
+          urlPath: "/",
+          fields: [
+            { name: "bgImage", type: "image", required: true, label: "Background Image" },
+            { name: "overlayText", type: "string", required: false, label: "Overlay Text" }
+          ]
+        },
+      ]
+    })
+  ],
+  stackbitVersion: ""
+};
+
+export default config;

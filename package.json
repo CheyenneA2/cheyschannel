@@ -1,0 +1,30 @@
+{
+  "name": "cheyschannel",
+  "version": "1.0.0",
+  "description": "",
+  "main": "script.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/CheyenneA2/cheyschannel.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/CheyenneA2/cheyschannel/issues"
+  },
+  "homepage": "https://github.com/CheyenneA2/cheyschannel#readme",
+  "devDependencies": {
+    "@stackbit/cms-git": "^1.0.35",
+    "@stackbit/types": "^2.1.14",
+    "@types/node": "^24.7.0",
+    "typescipt": "^1.0.0",
+    "typescript": "^5.9.3"
+  },
+  "dependencies": {
+    "undici-types": "^7.13.0"
+  }
+}
