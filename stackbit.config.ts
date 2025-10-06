@@ -21,6 +21,16 @@ const config: StackbitConfig = {
       ]
     })
   ],
+  siteMap: ({ documents }) => {
+    return documents
+      .filter(d => d.modelName === "home" || d.modelName === "page")
+      .map(d => ({
+        stableId: d.id,
+        urlPath: d.modelName === "home" ? "/" : `/${(d as any).slug ?? d.id}`,
+        document: d,
+        isHomePage: d.modelName === "home"
+      }));
+  },
   stackbitVersion: ""
 };
 

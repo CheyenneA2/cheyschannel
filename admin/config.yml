@@ -1,37 +1,21 @@
 backend:
   name: git-gateway
-  branch: main
+  branch: preview #edit on preview; PR later
 
 media_folder: "images/uploads"     # where uploaded images go in your repo
 public_folder: "/images/uploads"   # how the site accesses them
 
+publish_mode: editorial_workflow
+
 collections:
-  - name: "posts"
-    label: "Posts"
-    folder: "posts"
-    create: true
-    slug: "{{slug}}"
-    fields:
-      - { label: "Title", name: "title", widget: "string" }
-      - { label: "Date", name: "date", widget: "datetime" }
-      - { label: "Body", name: "body", widget: "markdown" }
-      - { label: "Image", name: "image", widget: "image", required: false }
-      - { label: "Description", name: "description", widget: "text", required: false }
+  - name: "site"
+    label: "Site Content"
+    files:
+      - label: "Homepage"
+        name: "home"
+        file: "content/home.json"
+        format: json
+        fields:
+          - { label: "Background Image", name: "bgImage", widget: "image" }
 
-      publish_mode: editorial_workflow
-      media_folder: "images/uploads"
-      public_folder: "/images/uploads"
-
-      collections
-        - name: "site"
-          label: "Site Content"
-          files:
-            - label: "Homepage"
-              name: "homepage"
-              file: "index.html"
-              fields:
-                - { label: "Page Title", name: "title", widget: "string" }
-                - { label: "Welcome Text", name: "text", widget: "string" }
-
-      load_config_file: true
-      preview_path: "/"
+      
