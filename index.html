@@ -5,70 +5,110 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Chey’s Channel</title>
     <style>
-      body {
-        font-family: Arial, sans-serif;
+      :root { 
+        --bg: #111;
+        --card: #1b1b1b;
+        --text: #eee;
+        --muted: #aaa;
+      }
+
+      * {
+        box-sizing: border-box;
         margin: 0;
         padding: 0;
-        text-align: center;
-        background-color: #f4f4f4;
       }
-      header {
-        background: #333;
-        color: white;
-        padding: 1rem;
 
-      }
-      main {
-        padding: 2rem;
-      }
-      footer {
-        background: #333;
-        color: white;
-        padding: 1rem;
-        position: fixed;
-        bottom: 0;
-        width: 100%;
-      }
-      :root { --bg:#111; --card:#1b1b1b; --text:#eee; --muted:#aaa; }
-      * { box-sizing: border-box; }
       body {
-        margin:0; min-height:100dvh; display:grid; place-items:center;
-        background: radial-gradient(1200px 600px at 70% -20%, #222 0%, #111 55%, #0c0c0c 100%);
-        font-family: system-ui, -apple-system, Arial, sans-serif; color: var(--text);
+        min-height: 100vh;
+        display: grid;
+        place-items: center;
+        font-family: system-ui, -apple-system, Arial, sans-serif;
+        color: var(--text);
+
+        background-image: url('images/ENTER.png'); 
+        background-size: cover;
+
+        background-color: #111;
+        
       }
+
       .card {
-        width:min(92vw, 420px);
-        background:var(--card); border:1px solid #2a2a2a; border-radius:16px;
-        padding:24px; box-shadow:0 10px 30px rgba(0,0,0,.35);
+        width: min(92vw, 420px);
+        background: var(--card);
+        border: 1px solid #2a2a2a;
+        border-radius: 16px;
+        padding: 24px;
+        box-shadow: 0 10px 30px rgba(0,0,0,0,35);
+        text-align: center;
       }
-      h1 { margin:0 0 10px; font-size:1.25rem; letter-spacing:.2px; }
-      p { margin:0 0 18px; color:var(--muted); font-size:.95rem; }
-      .row { display:flex; gap:10px; }
+
+      h1 {
+        margin-bottom: 10px;
+        font-size: 1.5rem;
+      }
+
+      p {
+        margin-bottom: 18px;
+        color: var(--muted);
+        font-size: 1rem;
+      }
+
+      .row {
+        display: flex;
+        gap: 10px;
+      }
+
       input[type="password"] {
-        flex:1; padding:12px 14px; border-radius:12px; border:1px solid #2b2b2b; background:#121212; color:var(--text);
+        flex: 1;
+        padding: 12px 14px;
+        border-radius: 12px;
+        border: 1px solid #2b2b2b;
+        background: #121212;
+        color: var(--text);
       }
+
       button {
-        padding:12px 16px; border-radius:12px; border:1px solid #2b2b2b; background:#2b66f6; color:white; cursor:pointer;
+        padding: 12px 16px;
+        border-radius: 12px;
+        border: none;
+        background: #d1d4da;
+        color: white;
+        cursor: pointer;
       }
-      button:hover { filter:brightness(1.05); }
-      .err { margin-top:10px; color:#ff7676; min-height:1.2em; }
-      /* Floating Admin button (hidden by default; shows when Identity user is logged in) */
+
+      button:hover {
+        filter: bightness(1.05);
+      }
+
+      footer {
+        position: fixed;
+        bottom: 10px;
+        width: 100%;
+        text-align: center;
+        color : var(--muted);
+        font-size: 0.8rem;
+      }
+
       .admin-btn {
-        position: fixed; bottom: 14px; left: 14px; z-index: 99;
-        padding: 6px 10px; font-size: 0.8rem; border-radius: 8px; border:1px solid #2b2b2b;
-        background:#606162; color:#fff; text-decoration: none; display: inline-block;
+        position: fixed;
+        bottom: 14px;
+        left: 14px;
+        z-index: 99;
+        padding: 6px 10px;
+        font-size: 0.8rem; 
+        border-radius: 8px;
+        border: 1px solid #2b2b2b;
+        background: #606162;
+        color: #fff;
+        text-decoration: none;
+        display: inline-block;
       }
-      body { margin:0; font-family: system-ui, -apple-system, Arial, sans-serif; background:#f6f6f6; color:#111; }
-      header { background:#333; color:#fff; padding:16px 20px; }
-      main { padding:24px; max-width:1000px; margin:0 auto; }
-      footer { background:#333; color:#fff; padding:16px 20px; margin-top:60px; }
+
     </style>
   </head>
   <body>
     <header>
-      <h1>Welcome to Chey’s Channel</h1>
     </header>
-
     <a class="admin-btn" href="/admin">4chey</a>
 
     <div class="card">
@@ -81,6 +121,7 @@
       <div id="err" class="err"></div>
     </div>
 
+
     <script src="https://identity.netlify.com/v1/netlify-identity-widget.js"></script>
     <script>
     // ⚠️ Simple client-side "gate" (avoid for sensitive content). For casual gating only.
@@ -92,9 +133,9 @@
       const err = document.getElementById("err");
 
       //If already unlocked, skip to home
-      if (localStorage.getItem(ACCESS_KEY) === "1") {
-        location.replace("/Channel 0.html");
-      }
+    //  if (localStorage.getItem(ACCESS_KEY) === "1") {
+    //    location.replace("/Channel 0.html");
+    //  }
 
       function tryEnter() {
         if ((pw.value || "").trim() === PASSCODE) {
